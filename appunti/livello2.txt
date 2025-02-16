@@ -1,0 +1,65 @@
+Goal 1 : host Computer B needs to communicate with host Computer A
+interface B1
+IP 192.168.58.222 (valore fisso)
+mask: 255.255.255.0 (devo cambiare questo numero)
+
+interface A1
+IP 192.168.58.2 (forse devo cambiare questo numero)
+Mask 255.255.255.224 (valore fisso)
+
+in questa situazione, ho risolto modificando IP di A1 a 192.168.58.221 e mask di B1 a 255.255.255.224. non capisco perche', e come faccio a capire quali sono i valori validi per l'ip data una maschera tipo 255.255.255.224
+
+-------------
+1️⃣ Analizziamo la subnet mask 255.255.255.224 (/27)
+La subnet mask /27 significa che i primi 27 bit sono dedicati alla rete e gli ultimi 5 bit agli host.
+
+Calcoliamo la dimensione della subnet
+Numero totale di IP per subnet:
+
+2^bit host= 2^5 = 32
+
+→ Ogni subnet contiene 32 indirizzi.
+
+Suddivisione degli indirizzi
+
+Primo IP = Indirizzo di rete (NON assegnabile)
+Ultimo IP = Indirizzo di broadcast (NON assegnabile)
+Tutti gli altri IP tra il primo e l'ultimo sono validi per gli host.
+Subnet per l'IP 192.168.58.2 con mask /27
+La subnet di A (192.168.58.2/27) è:
+
+Indirizzo di rete: 192.168.58.0
+Indirizzo di broadcast: 192.168.58.31
+Host validi: da 192.168.58.1 a 192.168.58.30
+🔴 Problema: 192.168.58.222 (Computer B) NON rientra in questa subnet, quindi A e B non possono comunicare direttamente.
+
+2️⃣ Qual è la subnet corretta per l’IP 192.168.58.222 con /27?
+Troviamo in quale subnet si trova 192.168.58.222, usando la mask 255.255.255.224 (/27).
+
+Ogni subnet ha 32 indirizzi, quindi i blocchi sono:
+
+192.168.58.0 - 192.168.58.31
+192.168.58.32 - 192.168.58.63
+192.168.58.64 - 192.168.58.95
+192.168.58.96 - 192.168.58.127
+192.168.58.128 - 192.168.58.159
+192.168.58.160 - 192.168.58.191
+192.168.58.192 - 192.168.58.223 ⬅️ (B appartiene a questa subnet!)
+192.168.58.224 - 192.168.58.255
+Quindi la subnet di B (192.168.58.222) è:
+
+Indirizzo di rete: 192.168.58.192
+Indirizzo di broadcast: 192.168.58.223
+Host validi: da 192.168.58.193 a 192.168.58.222
+🔹 A deve avere un IP valido nella stessa subnet!
+
+5️⃣ Regola generale per trovare IP validi
+Trova la subnet di riferimento usando la subnet mask.
+Trova l’indirizzo di rete e di broadcast.
+Gli IP validi per gli host sono tutti quelli tra questi due.
+Se due dispositivi devono comunicare, devono stare nella stessa subnet.
+
+un trucco e' quello di prendere un indirizzo valido da un altro computer
+con cui stai comunicando e aggiungere o sottrarre 1.
+
+due computer devono avere stessa subnet mask per comunicare.

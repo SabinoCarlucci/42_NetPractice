@@ -1,0 +1,5 @@
+- tutti i dispositivi devono avere le stesse limitazioni per la maschera di rete.
+- tutti i dispositivi devono far parte della stessa sotto-rete.
+
+104.198.234.0 - 104.198.234.127
+104.198.234.128 - 104.198.234.255
