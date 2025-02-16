@@ -1,0 +1,23 @@
+🔹 Nuova Variabile: Le "Routes" e il "Default Route"
+Ora entra in gioco un concetto nuovo: le rotte (routes).
+
+I routes dicono al computer dove mandare i pacchetti a seconda della destinazione dell'IP.
+
+Se il destinatario è nella stessa rete, il pacchetto viene inviato direttamente.
+Se è in un'altra rete, il pacchetto deve passare attraverso un gateway (di solito un router).
+🔹 Cos'è la "Default Route"?
+Quando un host non sa dove instradare un pacchetto, lo manda alla sua default route (o gateway di default).
+Il valore default => 192.168.0.254 significa:
+👉 "Se non sai dove mandare un pacchetto, invialo a 192.168.0.254".
+
+
+🔹 Cosa significa la route di Machine A?
+🔹 Routes: 10.0.0.0/8 => 192.168.0.254
+
+Questo significa che qualsiasi pacchetto destinato a una rete che inizia per 10. verrà inviato a 192.168.0.254, che è il gateway per quella rete.
+
+💡 Ma qui c’è un problema!
+
+Machine A ha IP 104.198.14.2, quindi non appartiene alla rete 10.0.0.0/8.
+Il gateway 192.168.0.254 non è nella stessa subnet di Machine A, quindi Machine A non può nemmeno contattarlo!
+👉 Soluzione: Probabilmente bisogna modificare la route o il gateway di default.

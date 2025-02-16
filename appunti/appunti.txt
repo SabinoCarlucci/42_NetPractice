@@ -40,6 +40,10 @@ Le subnet /30 vengono spesso usate per collegamenti punto a punto tra
 due dispositivi di rete, come tra due router.
 
 --------------
+valori della subnet mask
+possono essere solo questi, perche' rappresentano bit consecutivi con valore 1
+quindi devono essere somme di potenze consecutive di 2
+partendo da 2^7
 
 0	00000000
 128	10000000
@@ -51,6 +55,8 @@ due dispositivi di rete, come tra due router.
 254	11111110
 255	11111111
 
+rappresentazione dei bit e del loro valore complessivo
+
 0     = [0] [0] [0] [0] [0] [0] [0] [0]
 128   = [1] [0] [0] [0] [0] [0] [0] [0]
 192   = [1] [1] [0] [0] [0] [0] [0] [0]
@@ -61,7 +67,9 @@ due dispositivi di rete, come tra due router.
 254   = [1] [1] [1] [1] [1] [1] [1] [0]
 255   = [1] [1] [1] [1] [1] [1] [1] [1]
 
-
+grandezza delle sottoreti e numero di sottoreti
+questo determina gli indirizzi di rete e di broadcast,
+che sono il primo e l'ultimo di ogni sottorete
 0°  256     1
 1°	128     2
 2°	64      4
@@ -80,11 +88,11 @@ Esempi di calcolo:
 11100000 → 128 + 64 + 32 = 224
 11110000 → 128 + 64 + 32 + 16 = 240
 
-quindi il calcolo e' : (2^n) + (2 ^(n-1)) + eccetera.
+quindi il calcolo e' : (2^n) + (2 ^(n-1)) + (2 ^(n-2)) + ...
 Dove n parte da 7.
 I bit devono essere 1 consecutivi seguiti da 0 consecutivi.
-Per questo, solo alcubni valori sono validi, perche' 
-rappresentano le somme di bit consecutivi a 1.
+Per questo, solo alcuni valori sono validi, perche' 
+rappresentano le somme di bit consecutivi con valore 1.
 
 11000000 → 128 + 64 = 192 -->OK
 10100000 → 128 + 32 = 160 -->KO
@@ -92,6 +100,7 @@ rappresentano le somme di bit consecutivi a 1.
 
 La formula per calcolare gli host è:
 (2^bit host) − 2
+perche' ci sono sempre due host occupati: l'idirizzo di rete e quello di broadcast.
 
 quindi, se la subnet mask e' 255.255.255.240 i bit per gli host sono 4, e gli host 14.
 questo perche' l'indirizzo di rete e quello di broadcast non sono assegnabili.

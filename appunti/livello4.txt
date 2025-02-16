@@ -1,0 +1,17 @@
+🔹 Perché un router ha più interfacce?
+Un router ha più interfacce perché deve collegare reti diverse e instradare il traffico tra di esse.
+
+Ogni interfaccia del router è connessa a una rete diversa.
+Ogni interfaccia ha un IP e una subnet mask per identificare la rete a cui appartiene.
+Esempio:
+Se hai due reti diverse:
+
+192.168.1.0/24 (es. ufficio)
+10.0.0.0/8 (es. rete aziendale più grande)
+Il router avrà:
+
+Interfaccia R1 con IP 192.168.1.1 e subnet 255.255.255.0 → connessa alla rete 192.168.1.0/24
+Interfaccia R2 con IP 10.0.0.1 e subnet 255.0.0.0 → connessa alla rete 10.0.0.0/8
+Se un PC nella rete 192.168.1.0/24 vuole comunicare con un PC nella rete 10.0.0.0/8, il pacchetto passa dal router.
+
+👉 Ogni rete ha la sua interfaccia sul router!

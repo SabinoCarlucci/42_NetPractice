@@ -1,0 +1,36 @@
+🔹 Il problema originale
+L’errore diceva:
+
+"invalid default route on Internet I"
+
+Questo significa che Internet non sapeva come instradare i pacchetti di risposta verso 88.92.6.227.
+
+🔹 Motivo:
+
+Il default route di Internet era impostato su 163.172.250.12, quindi Internet non aveva un'informazione chiara su dove trovare la rete 88.92.6.227.
+Quando Internet riceveva una risposta per 88.92.6.227, non aveva una route specifica e il pacchetto si perdeva.
+🔹 Cosa significa /25 nella route che hai aggiunto?
+Quando hai aggiunto la route:
+
+88.92.6.227/25
+Hai detto a Internet che la rete 88.92.6.0/25 è direttamente raggiungibile.
+
+Vediamo cosa significa /25:
+
+📌 88.92.6.227/25 significa:
+
+88.92.6.227 è l’IP di destinazione.
+/25 indica una subnet mask di 255.255.255.128, che definisce una rete da 88.92.6.0 a 88.92.6.127.
+🔹 In pratica, stai dicendo a Internet:
+
+"Tutti gli IP da 88.92.6.0 a 88.92.6.127 sono raggiungibili e devono essere inviati attraverso la rete locale."
+
+Questo ha permesso a Internet di sapere dove mandare le risposte ai pacchetti in arrivo da 88.92.6.227.
+
+🔹 Perché ha risolto il problema?
+Ora Internet sa che 88.92.6.227 appartiene alla rete 88.92.6.0/25, quindi può inoltrare il pacchetto di risposta nella giusta direzione! 🚀
+
+Se non avessi aggiunto questa route, Internet avrebbe cercato di usare il default route (163.172.250.12), che non aveva informazioni su 88.92.6.227.
+
+🔹 Conclusione:
+Aggiungere 88.92.6.227/25 ha aiutato Internet a riconoscere l’IP come parte della rete e a sapere dove instradare i pacchetti di ritorno. 💡
