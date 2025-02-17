@@ -1,0 +1,44 @@
+in questo caso, comanda internet
+perche' ci impone un range di /26 per i riceventi.
+
+quindi l'intervallo sara' uguale alle prime 3 cifre, e la quarta va da 0 a 63
+o meglio da 1 a 62.
+
+159.59.19.0/26
+
+quindi
+
+da 159.59.19.0 a 159.59.19.63
+
+questo intervallo va suddiviso ulteriormente in 4, perche' ci sono 3 reti da gestire:
+	- router R1 e R2;
+	- router R2 e client D;
+	- router R2 e client C;
+
+ciascuna di queste reti non puo' andare oltre 159.59.19.63, 
+e deve avere un intervallo diverso dalle altre.
+
+Quindi un intervallo determinato a monte puo' essere suddiviso ulteriormente a valle.
+
+
+perche' /26 su internet significa che tutti gli indirizzi a valle
+devono rientrare in quel range da 0 a 63?
+	- perche' sto dividendo tutti i 256 indirizzi in 4 sottoreti e sto usando solo la prima.
+	quindi il range di indirizzi va da 0 a 63
+
+e perche' .240 (o /28) porta ad una divisione per 4? non dovrebbe essere per 16?
+	- sto dividendo per 16 tutti i 256 indirizzi possibili, ma dato che posso usare
+	solo i primi 64 valori per via della restrizione di internet, mi rimangono 4 sottoreti da 16 ip ciascuna.
+	in pratica, dividi il totale in 16 sottoreti da 16 ip ciascuna e prendi le prime 4.
+
+I motivi per cui non funzionava sono:
+
+1) quando C comunicava con D, arrivato a R2 il segnale poteva andare anche verso R1.
+	Questo perche' la maschera di R21 e R13 era 255.255.255.0, mentre doveva essere 255.255.255.252.
+	Questo permette solo 2 ip nella rete, il che lascia solo una strada al segnale da C a D e viceversa.
+
+2) quando C o D inviavano roba a internet, si creava un loop alla routing table di R1.
+	le due regole servono per distinguere i segnali da internet a C o D e viceversa.
+	dato che una regola e' impostata per mandare verso R12 qualunque segnale, 
+	bisogna dare una regola specifica per C e/o D.
+	ma perche' serve quel valore?

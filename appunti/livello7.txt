@@ -1,0 +1,19 @@
+Overlap: il range di indirizzi di una rete non deve sovrapporsi al range di altre reti.
+
+Come cpisco dove finisce una rete?
+
+I router sono il confine di una rete, perche' il loro scopo e' unire reti diverse.
+Questo significa che:
+	- lo stesso router fa parte di piu' reti diverse;
+	- tutto cio' che e' direttamente collegato al routeer dallo stesso "lato" e' nella stessa rete, incluso il router stesso.
+
+Quindi per risolvere il problema, devi dividere la rete complessiva in un numero di sottoreti pari o superiore al numero di reti diverse collegate dai router.
+Io ho diviso in 4 sottoreri.
+
+108.198.14.0 - 108.198.14.64
+
+108.198.14.65 - 108.198.14.128
+
+108.198.14.129 - 108.198.14.192
+
+108.198.14.193 - 108.198.14.255
