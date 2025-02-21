@@ -1,0 +1,55 @@
+indirizzi pubblici e privati
+
+📌 Indirizzi Pubblici
+
+Sono univoci su Internet e vengono assegnati da un ente centrale (IANA).
+Permettono a un dispositivo di essere raggiungibile direttamente da chiunque su Internet.
+Esempi di IP pubblici:
+8.8.8.8 (Google DNS)
+104.82.118.244
+192.35.79.65
+
+
+📌 Indirizzi Privati
+
+Sono usati all’interno di reti locali (LAN) e non possono essere raggiunti direttamente da Internet.
+Sono riservati per reti aziendali, Wi-Fi domestici, ecc.
+Devono usare un router con NAT per accedere a Internet.
+Range degli IP privati (RFC 1918):
+10.0.0.0 – 10.255.255.255 (/8)
+172.16.0.0 – 172.31.255.255 (/12)
+192.168.0.0 – 192.168.255.255 (/16)
+---------------------
+
+l'esercizio provera' a darti indirizzi privati,
+per questo non funzionera' finche' non li rendi pubblici
+
+FAI ATTENZIONE:
+1) 10 - 172 - 192 indirizzi "sbagliati".
+	cambia anche solo un numero e vanno bene
+	es: (sbagliato)192.168.83.3 --> (giusto)191.168.83.3
+
+2) lato sinistro:
+	facile. routing table di ciascun pc punta a router vicino.
+	subnet mask dipende da router.
+	Ip sono 1, 2 e 3.
+
+3) routing table R1:
+	- l'ultima regola punta a internet,
+	- le altre due puntano in basso, a R2
+		- una prende segnali per C
+		- l'altra prende i segnali per D
+
+4) collegamento tra R1 e R2 e' una rete punto-punto
+
+5) routing table R2 punta a R13, perche' per forza li' deve andare.
+
+6) routing table di internet:
+	vedi i due pc che devono collegarsi a internet
+	prendi i segnali indirizzati a ciascuno dei due,
+	l' altro e' default.
+
+	mi raccomando: 9.0.0.252/30 per i pc sulla destra.
+	perche' 252? perche' serve per dire che l'indirizzo appartiene a quella subnet.
+	9.0.0.0 fa riferimento alla prima subnet, mentre 9.0.0.252 all'ultima,
+	e l'indirizzo che mi interessa e' 9.0.0.253.
