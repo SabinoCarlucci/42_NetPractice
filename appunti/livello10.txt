@@ -1,0 +1,19 @@
+tutti IP hanno parte di rete uguale
+
+interfacce collegate da switch
+	IP e mask dipendono da router
+
+internet:
+	deve poter raggiungere tutti, quindi parte di rete uguale, poi 0/24
+	es: 133.20.77.0/24
+
+router vicino internet:
+	due regole per le interfacce sotto, una per internet.
+	non serve regola per interfacce con switch perche' sono collegate direttamente.
+
+router in basso con relative interfacce:
+	calcola bene intervallo.
+	un lato e' vincolato da maschera a 192, altro e' libero.
+	lato vincolato ha IP determinato da route table,
+	quindi intervallo di altro lato e' immediatamente successivo.
+	Questo lato puo' avere maschera da 252.

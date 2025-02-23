@@ -1,0 +1,12 @@
+
+
+6) in routing table internet indirizzo A1 seguito da /25 (es. 99.109.162.227/25)
+
+7) sono tutte reti punto-punto (1-2, 253-254, 5-6)
+
+8) tutta rete ha IP in intervallo 0 - 63, router R1 table indirizzo uguale a internet
+
+9) correggi indirizzi 10 172 192 (privati)
+
+10) internet .0/24, calcola intervallo host in basso
+

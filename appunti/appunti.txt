@@ -109,5 +109,3 @@ indirizzo di rete e' il primo della sotto-rete.
 es. 192.168.1.0
 
 broadcast e' ultimo della sotto-rete.
-
-puoi capire quali indirizzi sono validi dal
